@@ -63,6 +63,8 @@ bash scripts/build-release.sh
 
 脚本生成四个自包含压缩包：Windows x64、Linux x64、macOS Apple Silicon 和 macOS Intel。解压对应平台的完整目录后，Windows 运行 `DBViewer.exe`；Linux 和 macOS 在终端运行 `./DBViewer`。无需预装 .NET。默认端口为 5080；macOS 下载后的首次运行可能需要在系统设置中允许打开未签名程序。发布包只包含程序和静态资源，不包含数据库连接配置或快照。
 
+推送 `vX.Y.Z` 标签时，GitHub Actions 使用同一脚本构建并将四个压缩包及 `SHA256SUMS.txt` 附加到对应 Release；需要重试时也可在 Actions 中手动输入已有标签运行。
+
 默认启动配置监听所有网卡。此版本面向可信局域网内的单用户使用，未实现登录授权。共享部署前应增加身份认证、数据库访问范围限制和 HTTPS。连接字符串通过同源请求发送至后端；错误响应不回显密码或数据库内部异常。
 
 ## 目录
